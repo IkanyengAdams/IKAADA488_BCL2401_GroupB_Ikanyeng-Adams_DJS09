@@ -1,3 +1,5 @@
+console.log("Hello World!");
+
 // Number Types mini-challenge 10 10.2
 // Write a function that will only accept numbers and attend to 
 // all TypeScript weakness flags.
