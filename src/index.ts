@@ -1,5 +1,8 @@
 
-import { showReviewTotal, populateUser } from './utils'
+const propertyContainer = document.querySelector('.properties')
+
+import { showReviewTotal, populateUser } from './utils';
+import "../index.css";
 
 let isOpen : boolean
 
@@ -58,7 +61,7 @@ const properties : {
     isAvailable: boolean;
 }[] = [
     {
-        image: '',
+        image: 'images/colombia-property.jpg',
         title: 'Colombian Shack',
         price: 45,
         location: {
@@ -72,7 +75,7 @@ const properties : {
 },
 
 {
-    image: '',
+    image: 'images/poland-property.jpg',
     title: 'Polish Cottage',
     price: 34,
     location: {
@@ -86,7 +89,7 @@ const properties : {
 },
 
 {
-    image: '',
+    image: 'images/london-property.jpg',
     title: 'London Flat',
     price: 23,
     location: {
@@ -104,4 +107,13 @@ showReviewTotal(reviews.length, reviews[0].name, reviews[0].loyaltyUser)
 
 populateUser(you.isReturning, you.firstName)
 
+for (let i = 0; i < properties.length; i++) {
+    const card = document.createElement('div')
+    card.classList.add('card')
+    card.innerHTML = properties[i].title
+    const image = document.createElement('img')
+    image.setAttribute('src', properties[i].image)
+    card.appendChild(image)
+    propertyContainer.appendChild(card)
+}
 
