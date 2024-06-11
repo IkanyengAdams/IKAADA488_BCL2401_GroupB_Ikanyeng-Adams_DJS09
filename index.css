@@ -24,7 +24,7 @@ body {
     height: 30px;
     width: 46px;
     background-size: 47px;
-    background-image: url('images/sofa-logo.png');
+    background-image: url('public/images/sofa-logo.png');
     margin: 20px;
 }
 
@@ -53,4 +53,19 @@ body {
     text-align: center;
     padding: 30px;
     color: white;
+}
+
+.review-card {
+    padding: 10px;
+}
+
+.reviews {
+    display: flex;
+    padding: 10px;
+}
+
+.break {
+    height: 1px;
+    width: 90%;
+    background-color: coral;
 }
