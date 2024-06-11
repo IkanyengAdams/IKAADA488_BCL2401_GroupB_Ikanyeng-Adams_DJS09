@@ -1,11 +1,17 @@
-import { showReviewTotal, populateUser, showDetails } from "./utils";
+import { showReviewTotal, populateUser, showDetails, getTopTwoReviews } from "./utils";
 import { Permissions, LoyaltyUser } from "./enums";
-import { Price, Country } from './types'
+import { Price, Country } from "./types";
+import { Review } from './interfaces'
 import "../index.css";
 const propertyContainer = document.querySelector(".properties");
+const reviewContainer = document.querySelector(".reviews");
+const container = document.querySelector(".container");
+const button = document.querySelector("button");
 const footer = document.querySelector(".footer");
 
 let isLoggedIn: boolean;
+
+
 
 const reviews: any[] = [
   {
@@ -37,8 +43,6 @@ const you = {
   age: 20,
   stayedAt: ["florida-home", "oman-flat", "tokyo-bungalow"],
 };
-
-
 
 const properties: {
   image: string;
@@ -99,11 +103,7 @@ const properties: {
 showReviewTotal(reviews.length, reviews[0].name, reviews[0].loyaltyUser);
 populateUser(you.isReturning, you.firstName);
 
-
-
 isLoggedIn = true;
-
-
 
 for (let i = 0; i < properties.length; i++) {
   const card = document.createElement("div");
@@ -113,9 +113,26 @@ for (let i = 0; i < properties.length; i++) {
   image.setAttribute("src", properties[i].image);
   card.appendChild(image);
   propertyContainer.appendChild(card);
-  showDetails(you.permissions, card, properties[i].price);
-  propertyContainer.appendChild(card)
+  showDetails(you.permissions === Permissions.ADMIN, card, properties[i].price);
+  propertyContainer.appendChild(card);
 }
+
+let count = 0
+function addReviews(array: Review [] ) : void {
+    if (!count ) {
+        count++
+        const topTwo = getTopTwoReviews(array)
+        for (let i = 0; i < topTwo.length; i++) {
+            const card = document.createElement('div')
+            card.classList.add('review-card')
+            card.innerHTML = topTwo[i].stars + ' stars from ' + topTwo[i].name
+            reviewContainer.appendChild(card)
+        }
+        container.removeChild(button) 
+    }
+}
+
+button.addEventListener('click', () => addReviews(reviews))
 
 let currentLocation: [string, string, number] = ["Rustenburg", "22:22", 5];
 footer.innerHTML =
