@@ -6,11 +6,8 @@ const footer = document.querySelector(".footer");
 
 let isOpen: boolean;
 
-
-
-const reviews : any[]= [
-   
-{
+const reviews: any[] = [
+  {
     name: "Sheia",
     stars: 5,
     loyaltyUser: LoyaltyUser.GOLD_USER,
@@ -27,12 +24,9 @@ const reviews : any[]= [
     stars: 4,
     loyaltyUser: LoyaltyUser.SILVER_USER,
     date: "27-03-2021",
-    description: 'Great hosts, location was a bit further than said',
+    description: "Great hosts, location was a bit further than said",
   },
 ];
-
-const ADMIN = "admin";
-const READ_ONLY = "read-only";
 
 const you = {
   firstName: "Ikanyeng",
@@ -42,10 +36,6 @@ const you = {
   age: 20,
   stayedAt: ["florida-home", "oman-flat", "tokyo-bungalow"],
 };
-
-// if (you.permissions === "admin") {
-//   //show
-// }
 
 const properties: {
   image: string;
@@ -102,9 +92,25 @@ const properties: {
     isAvailable: true,
   },
 ];
-showReviewTotal(reviews.length, reviews[0].name, reviews[0].loyaltyUser);
 
+showReviewTotal(reviews.length, reviews[0].name, reviews[0].loyaltyUser);
 populateUser(you.isReturning, you.firstName);
+
+let authorityStatus: any;
+
+isLoggedIn = true;
+
+function showDetails(
+  authorityStatus: boolean | Permissions,
+  element: HTMLDivElement,
+  price: number
+) {
+  if (authorityStatus) {
+    const priceDisplay = document.createElement("div");
+    priceDisplay.innerHTML = price.toString() + "/night";
+    element.appendChild(priceDisplay);
+  }
+}
 
 for (let i = 0; i < properties.length; i++) {
   const card = document.createElement("div");
@@ -114,6 +120,7 @@ for (let i = 0; i < properties.length; i++) {
   image.setAttribute("src", properties[i].image);
   card.appendChild(image);
   propertyContainer.appendChild(card);
+  showDetails(you.permissions, card, properties[i].price);
 }
 
 let currentLocation: [string, string, number] = ["Rustenburg", "22:22", 5];
