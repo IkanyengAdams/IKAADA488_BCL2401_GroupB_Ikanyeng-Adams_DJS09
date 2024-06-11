@@ -1,10 +1,11 @@
-import { showReviewTotal, populateUser } from "./utils";
+import { showReviewTotal, populateUser, showDetails } from "./utils";
 import { Permissions, LoyaltyUser } from "./enums";
+import { Price, Country } from './types'
 import "../index.css";
 const propertyContainer = document.querySelector(".properties");
 const footer = document.querySelector(".footer");
 
-let isOpen: boolean;
+let isLoggedIn: boolean;
 
 const reviews: any[] = [
   {
@@ -37,6 +38,8 @@ const you = {
   stayedAt: ["florida-home", "oman-flat", "tokyo-bungalow"],
 };
 
+
+
 const properties: {
   image: string;
   title: string;
@@ -51,7 +54,7 @@ const properties: {
   isAvailable: boolean;
 }[] = [
   {
-    image: "./images/colombia-property.jpg",
+    image: "images/colombia-property.jpg",
     title: "Colombian Shack",
     price: 45,
     location: {
@@ -65,7 +68,7 @@ const properties: {
   },
 
   {
-    image: "./images/poland-property.jpg",
+    image: "images/poland-property.jpg",
     title: "Polish Cottage",
     price: 34,
     location: {
@@ -79,7 +82,7 @@ const properties: {
   },
 
   {
-    image: "./images/london-property.jpg",
+    image: "images/london-property.jpg",
     title: "London Flat",
     price: 23,
     location: {
@@ -96,21 +99,11 @@ const properties: {
 showReviewTotal(reviews.length, reviews[0].name, reviews[0].loyaltyUser);
 populateUser(you.isReturning, you.firstName);
 
-let authorityStatus: any;
+
 
 isLoggedIn = true;
 
-function showDetails(
-  authorityStatus: boolean | Permissions,
-  element: HTMLDivElement,
-  price: number
-) {
-  if (authorityStatus) {
-    const priceDisplay = document.createElement("div");
-    priceDisplay.innerHTML = price.toString() + "/night";
-    element.appendChild(priceDisplay);
-  }
-}
+
 
 for (let i = 0; i < properties.length; i++) {
   const card = document.createElement("div");
@@ -121,6 +114,7 @@ for (let i = 0; i < properties.length; i++) {
   card.appendChild(image);
   propertyContainer.appendChild(card);
   showDetails(you.permissions, card, properties[i].price);
+  propertyContainer.appendChild(card)
 }
 
 let currentLocation: [string, string, number] = ["Rustenburg", "22:22", 5];
