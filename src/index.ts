@@ -12,10 +12,9 @@ const footer = document.querySelector(".footer");
 let isLoggedIn: boolean;
 
 
-
 const reviews: Review[] = [
   {
-    name: "Sheia",
+    name: "Sheila",
     stars: 5,
     loyaltyUser: LoyaltyUser.GOLD_USER,
     date: "01-04-2021",
@@ -44,19 +43,21 @@ const you = {
   stayedAt: ["florida-home", "oman-flat", "tokyo-bungalow"],
 };
 
-const properties: {
-  image: string;
-  title: string;
-  price: number;
-  location: {
-    firstLine: string;
-    city: string;
-    code: number;
-    country: string;
-  };
-  contact: [number, string];
-  isAvailable: boolean;
-}[] = [
+interface Property {
+    image: string;
+    title: string;
+    price: Price;
+    location: {
+        firstLine: string;
+        city: string;
+        code: number | string;
+        country: Country
+    }
+    contact: [ number, string];
+    isAvailable: boolean;
+}
+
+const properties: Property[] = [
 
   {
     image: "images/colombia-property.jpg",
@@ -75,7 +76,7 @@ const properties: {
   {
     image: "images/poland-property.jpg",
     title: "Polish Cottage",
-    price: 34,
+    price: 30,
     location: {
       firstLine: "no 23",
       city: "Gdansk",
@@ -89,11 +90,11 @@ const properties: {
   {
     image: "images/london-property.jpg",
     title: "London Flat",
-    price: 23,
+    price: 25,
     location: {
       firstLine: "flat 15",
       city: "London",
-      code: 35433,
+      code: 'SW4 5XW',
       country: "United Kingdom",
     },
     contact: [+34829374892553, "andyluger@aol.com"],
@@ -144,3 +145,29 @@ footer.innerHTML =
   " " +
   currentLocation[2] +
   "°";
+// Classes
+class MainProperty {
+    src: string
+    title: string
+    reviews: Review[]
+    constructor(src: string, title: string, reviews: Review[]) {
+        this.src = src
+        this.title = title
+        this.reviews = reviews
+    }
+}
+
+let yourMainProperty = new MainProperty(
+    'images/italian-property.jpg', 
+    'Italian House',
+    [{
+        name: 'Olive',
+        stars: 5,
+        loyaltyUser: LoyaltyUser.GOLD_USER,
+        date: '12-04-2021'
+    }] )
+
+const mainImageContainer = document.querySelector('.main-image')
+const image = document.createElement('img')
+image.setAttribute('src', yourMainProperty.src)
+mainImageContainer.appendChild(image)
