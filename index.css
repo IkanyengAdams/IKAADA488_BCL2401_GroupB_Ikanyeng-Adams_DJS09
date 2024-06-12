@@ -37,6 +37,10 @@ body {
     flex-wrap: wrap;
 }
 
+.card img {
+    width: 100%;
+}
+
 .card {
     width: 150px;
     margin: 5px;
@@ -53,6 +57,7 @@ body {
     text-align: center;
     padding: 30px;
     color: white;
+     
 }
 
 .review-card {
@@ -68,4 +73,16 @@ body {
     height: 1px;
     width: 90%;
     background-color: coral;
+}
+
+button {
+    background-color: green;
+    color: white;
+    border-radius: 5px;
+    border: none;
+    padding: 10px;
+}
+
+button:hover {
+    background-color: darkgoldenrod;
 }
