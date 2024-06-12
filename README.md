@@ -27,7 +27,9 @@ Highlights a main property with an image and title.
 Current Location:
 
 Displays the user's current location, time, and temperature in the footer.
-Installation
+
+# Installation
+
 Clone the repository:
 bash
 Copy code
@@ -42,7 +44,8 @@ bash
 Copy code
 npm start
 Open the application in your browser at http://localhost:3000.
-Utility Functions
+
+# Utility Functions
 showReviewTotal: Displays the total number of reviews and highlights a specific review.
 populateUser: Populates the user information and displays a greeting.
 showDetails: Shows property details based on user permissions.
