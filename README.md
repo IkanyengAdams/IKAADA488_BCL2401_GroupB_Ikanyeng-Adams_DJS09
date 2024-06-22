@@ -42,7 +42,7 @@ Usage
 Start the development server:
 bash
 Copy code
-npm start
+Run the command npm run serve
 Open the application in your browser at http://localhost:3000.
 
 # Utility Functions
