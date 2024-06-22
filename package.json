@@ -21,5 +21,8 @@
     "serve": "webpack serve"
   },
   "version": "1.0.0",
-  "description": "My webpack project"
+  "description": "My webpack project",
+  "dependencies": {
+    "quick-sort": "^0.2.1"
+  }
 }
